@@ -1,0 +1,164 @@
+<!-- 
+
+    This first lesson will teach you the basic understanding of how modern ES6 Javascript works.  
+    Knowing modern standard vanilla JS is the key to being successful with frameworks and almost any other web development step.
+
+    This Lesson Will Cover:
+        querySelector
+        ES6 arrow functions
+        var let and const
+        ternary operators
+        template literals.
+
+
+    What is a query Selector?
+
+-->
+
+    <script>
+    
+        var element = document.querySelector('.element');
+
+    </script>
+
+<!-- A query selector allows us to grab an element by either it's ID or ClassName.  The example above would grab an element with a classname of element.
+    This can also be used a .querySelectorAll('.className'); to grab ALL classes of a certain element.  You can also grab elements such as the footer
+    by typing .querySelector('footer');
+
+    This has become the defacto substitue for document.getElementbyID(); for most situations as it is more versatile and allows for a premade function to be
+    created that allows for quick grabbing of elements
+
+    e.g. : 
+
+        function _(elementName) {
+            return document.querySelector(elementName);
+        };
+
+        var element = _('.element');
+
+-->
+
+    <!-- What Is an arrow function? -->
+
+    <script>
+    
+        element.addEventListener('click', (args) => {
+            console.log('clicked!');
+        });
+        
+    </script>
+
+
+<!-- 
+
+    Arrow functions are what has made ES6 so loved and quickly accepted into modern web development.  This becomes more apparent once we
+    jump into javascript frameworks due to this being huge in specific functions for objects and arrays, for now though we can look at it
+    at the most basic level which is the Event Listener.
+
+    Previously an EventListener was written like this:
+
+        element.addEventListener('click', function() {
+            some code.
+        });
+
+        now we can just remove the function() and replace it with () =>
+
+    For now don't worry too much past this as once we jump into Vue.js and Especially React will this become a large time saver.
+
+ -->
+
+ <!-- Var Let and Const -->
+
+    <script>
+    
+        var element = 0;
+        let element = 1;
+        const element = 2;
+
+    </script>
+
+<!-- 
+
+    var, let, and const have changed how we use Javascript to the point where most people ignore var in a standard project.
+
+    Var = a global element that can be changed.
+    Let = a scoped element that only changes within the scope of the project.
+    Const = an element that CANNOT be changed.
+
+    e.g. :
+
+        Var number = 5;
+
+            function changeNumber() {
+                number = 7;
+            }
+        
+        console.log(number) <- you would get 7.
+
+        let number = 5;
+
+            function changeNumber(){
+                let number = 7;
+            }
+        
+        console.log(number) <- you would get 5.
+
+ -->
+
+<!-- What is a ternary Operator? -->
+
+    <script>
+    
+    isTrue ? Do This : Do That
+    
+    </script>
+
+
+<!-- 
+    
+    Ternary Operators are basically fancy if else statements except faster, easier, and more efficient.
+
+        Basically if the first condition is true 5 > 6 then do the first option console.log('true'); else do the second console.log('false');
+
+        5 > 6 ? console.log('true') : console.log('false')
+
+        easy right?
+
+-->
+
+
+<!-- What is a template literal? -->
+
+
+    <script>
+    
+        var variable = 'some sort of text';
+
+        var lecture = `<h1>something</h1> <p>something something ${variable} something something something</p>`;
+
+    </script>
+
+    <!-- 
+
+        template literals allow for you to add long texts of strings and event html elements or javascript variables.
+        any variable used within a template literal must be encased with ${} and the whole string must be encased with ` found below the escape key.
+
+     -->
+
+
+     
+
+<!--
+
+    Project:
+
+        The project for the course is to create a button and an input that displays whatever is typed into the input.
+
+            Objectives:
+                1. Must show whatever is inside of the input as part of a div that cannot have an ID tag.
+                2. If nothing is entered into the input, the div must show a message saying, you entered nothing.
+                3. No functions are allowed except a single arrow function.
+
+    A completed version of the project can be found in lessonOneFinal.html
+
+ -->

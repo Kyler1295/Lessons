@@ -1,0 +1,60 @@
+<!-- 
+
+    This first lesson will teach you the basic understanding of how modern ES6 Javascript works.  
+    Knowing modern standard vanilla JS is the key to being successful with frameworks and almost any other web development step.
+
+    This Lesson Will Cover:
+        querySelector
+        ES6 arrow functions
+        var let and const
+        ternary operators
+        template literals.
+
+    Project:
+
+        The project for the course is to create a button and an input that displays whatever is typed into the input.
+
+            Objectives:
+                1. Must show whatever is inside of the input as part of a div that cannot have an ID tag and it must show as an h1.
+                2. If nothing is entered into the input, the div must show a message saying, you entered nothing as an h3.
+                3. No functions are allowed except a single arrow function.
+
+    A completed version of the project can be found in lessonOneFinal.html
+
+ -->
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <title>Document</title>
+ </head>
+ <body>
+     <label for="Enter your message."></label>
+    <input type="text" class="textInput">
+    <button class="submit">Submit Text</button>
+    <div class="textShow">
+
+    </div>
+
+
+
+
+    <script>
+        
+        const input = document.querySelector('.textInput');
+        const button = document.querySelector('.submit');
+        const textShow = document.querySelector('.textShow');
+
+        button.addEventListener('click', () => {
+            let text = input.value;
+            text == '' ? 
+                textShow.innerHTML = `<h3>You have entered nothing.</h3>` : 
+                textShow.innerHTML = (`<h1>` + text + `</h1>`)
+        });
+
+    </script>
+ </body>
+ </html>
