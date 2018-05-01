@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+    <style>
+    
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        section{
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        ul{
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+        }
+    
+    </style>
+</head>
+<body>
+    
+    <!-- The Vue Instance is loaded within the div called app -->
+    <section id="app" v-bind:style="{backgroundColor: sectionBackground}">
+        <ul v-if="show" v-bind:style="{backgroundColor: sectionBackground}">
+            <li v-for="color in colors">{{ color }}</li>
+        </ul>
+        <button @click="switchShow">Click Me</button>
+    </section>
+
+    <!-- Vue CDN -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js'></script> 
+
+    <script>
+
+        const section = document.querySelector('#app');
+        console.log(section);
+    
+    // Creating the vue instance.  app can be named whatever
+    const app = new Vue({
+        // Declaring where the instance should relate to the DOM so el: '#app' refers to our <div id="app"> above. This can be named whatever!
+        el: '#app', 
+        // The data where our variables are held.  
+        data: {
+            colors: ['red', 'orange', 'pink', 'green', 'magenta'],
+            show: false,
+            sectionBackground: ''
+        },
+        methods: {
+            switchShow: function(){
+                alert('Switch! Wee');
+                this.sectionBackground = 'grey';
+                this.show = !this.show;
+            }
+        }
+    });
+    
+    </script>
+</body>
+</html>

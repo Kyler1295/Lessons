@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.min.css'/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.0/darkly/bootstrap.min.css">
+    <style>
+    
+    .flexBox{
+        width: 100vw;
+        height: 50vh;
+        display: flex;
+        
+    }
+
+    .flexItem{
+        width: 15%;
+        height: 50%;
+        margin: 15px;
+    }
+
+    .justification{
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: column;
+        width: 30%;
+    }
+    .alignment{
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: column;
+        width: 30%;
+    }
+    .controlSection{
+        width: 100vw;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start
+    }
+    .direction{
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: column;
+        width: 30%;
+    }
+    
+    </style>
+</head>
+<body>
+    
+    <div id="app" class="container-fluid">
+        <section class="flexBox" v-bind:style="{ justifyContent: justify, alignItems: alignment, flexDirection: direction }">
+            <div class="flexItem" style="background-color: red;">1</div>
+            <div class="flexItem" style="background-color: green;">2</div>
+            <div class="flexItem" style="background-color: blue;">3</div>
+        </section>
+        <section class="controls">
+            <h1>User this section to change the flexBox section above to see how these properties change the elements.</h1>
+            <div class="controlSection">
+
+                <div class="justification">
+                    <h3>Justify-Content</h3>
+                    <input type="radio" id="start" value="flex-start" v-model="justify">
+                    <label for="start">Flex-Start</label>
+                    <input type="radio" id="end" value="flex-end" v-model="justify">
+                    <label for="end">Flex-End</label>
+                    <input type="radio" id="center" value="center" v-model="justify">
+                    <label for="center">Center</label>
+                    <input type="radio" id="space-around" value="space-around" v-model="justify">
+                    <label for="space-around">Space-Around</label>
+                    <input type="radio" id="space-between" value="space-between" v-model="justify">
+                    <label for="space-between">Space-Between</label>
+                </div>
+                <div class="alignment">
+                    <h3>Align-Items</h3>
+                    <input type="radio" id="startAlign" value="flex-start" v-model="alignment">
+                    <label for="startAlign">Flex-Start</label>
+                    <input type="radio" id="endAlign" value="flex-end" v-model="alignment">
+                    <label for="endAlign">Flex-End</label>
+                    <input type="radio" id="centerAlign" value="center" v-model="alignment">
+                    <label for="centerAlign">Center</label>
+                </div>
+                <div class="direction">
+                    <h3>Flex-Direction</h3>
+                    <input type="radio" id="row" value="row" v-model="direction">
+                    <label for="row">Row</label>
+                    <input type="radio" id="column" value="column" v-model="direction">
+                    <label for="column">Column</label>
+                    <input type="radio" id="rowrev" value="row-reverse" v-model="direction">
+                    <label for="rowrev">Row Reversed</label>
+                    <input type="radio" id="columnrev" value="column-reverse" v-model="direction">
+                    <label for="columnrev">Column Reversed</label>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js'></script>
+    <script>
+    
+        var app = new Vue({
+            el: '#app',
+            data: {
+                justify: 'flex-start',
+                alignment: 'flex-start',
+                direction: 'row'
+            }
+        });
+
+    </script>
+</body>
+</html>

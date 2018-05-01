@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Vue</title>
+</head>
+<body>
+    
+    <!-- The Vue Instance is loaded within the div called app -->
+    <div id="app">
+        
+    </div>
+
+    <!-- Vue CDN -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js'></script> 
+
+    <script>
+    
+    // Creating the vue instance.  app can be named whatever
+    const app = new Vue({
+        // Declaring where the instance should relate to the DOM so el: '#app' refers to our <div id="app"> above. This can be named whatever!
+        el: '#app', 
+        // The data where our variables are held.  
+        data: {
+
+        }
+    });
+    
+    </script>
+</body>
+</html>

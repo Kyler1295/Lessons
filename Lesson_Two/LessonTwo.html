@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>FlexBox, Vue Intro, More Javascript Practice</title>
+</head>
+<body>
+    
+    <!-- This Lesson Will Cover the basics of Flex Box CSS, an introduction to Vue, and More Javascript practice. -->
+
+
+    <!-- FlexBox -->
+    <!-- 
+
+        Flex box is the more used form of positining elements in 2018.  It forms the basis of most websites and considered the defacto way to center anything on a single plane ( X or Y ).
+        Run the FlexBox.html file found in this folder to view a demonstration of flexbox.  The basics of flexbox are this:
+
+        1. Apply display:flex; to a parent element.
+        2. Justify-content: (flex-start, flex-end, center, space-around, space-between);
+        3. align-items: (flex-start, center, flex-end);
+        4. flex-direction: (column, row <-- default setting);
+
+        There are other options such as wrapping, but this is the basics of flex.
+
+        The basics are that flex as a whole allows for us to fluidly control all of the elements within a parent div.
+
+        The three main properties to know are
+
+        Justify-content: How the elements align up on the X axis.
+        Align-items: How the elements align up on the Y axis.
+        Flex-direction: If the elements are aligned as a row or column ( note*: this changes the X and Y axis if set to column.  e.g.: if row Justify-content is Y and align-items is X.)
+        
+        There are other options such as flex-wrap and others but those are used more for portfolio options for wrapping projects or any large scale amount of repititions. 
+
+
+     -->
+
+
+     <!-- Introduction to Vue. -->
+
+     <!-- 
+
+        Vue.js is a javascript framework that allows for us to dynamically change the DOM of a page without causing damage like previous frameworks have.
+        Vue falls under the class of the big three frameworks: Vue, React, and Angular, and is the smallest of these three and the framework gaining the most steam.
+        Vue has two different forms: template style ( VueX ) which we will not go over, and a more simplistic built in style ( Vue.js ) which can be CDN'd into a project.
+
+        Navigate to the Vue.html file for a standard boiler template of how Vue is set up.
+
+        Today we're only going to cover the Vue events that can be applied to HTML DOM elements.  
+
+        We're going to cover:
+
+        v-for, @click, v-if, v-else and how to set up the basic structor for methods.
+
+        we will also go over the template syntax that uses curly braces {{  }} to show output from data.
+
+        go to VueExample.html to see the demonstration.
+
+        notice in data we have four elements, an Array called grades, and two strings called name and message and an integar called age.
+
+        Lets say we wanted to show the grades as a report card for Steve.  
+
+        First we would need to display his name.  So within the <h1> tag we add {{ name }}. Easy right?
+        Next we want to show his age so with in the <h3> we put {{ age }}. Getting the hang of this?
+        Now lets show the message from the teacher in <p> tags. just add {{ message }}.
+            
+        Finally lets show his grades.  In the <ul> you see we have a <li> with v-for="grade in grades" this basically says any single element in the array
+            will now be known as grade.  We then put {{grade}} within the <li> to display each one.
+
+        Lastly lets add the button that sends a confirmation message saying that the grades were read.  On the button you can see @click="gradesRead".
+            This calls a method in the Vue instance we made in the script called gradesRead to alert the user. Methods are just functions and are easy to call with Vue!
+            We will then save the response from the confirm call to our data value confirmed.  confirm returns true or false depending on if ok or cancel is clicked.
+            Using v-if and v-else we then can display a thank you message and hide the button if confirmed = true!
+            v-if="confirmed" is the same as saying v-if="confirmed = true" then show this div, if this statement isn't true then show the v-else div.
+      -->
+
+      <!-- Lets practice -->
+
+      <!-- 
+
+        Using the documentation for Vue.js https://vuejs.org/v2/guide/ create an application that when you click a button three things happen:
+
+        1. A method is called that changes the section background to a different color.
+        2. A list is displayed full of colors, at least 5 colors are required.
+        3. An alert pops-up with a message for the user.
+
+        The list must be displayed not as a horizontal list but a vertical list that is evenly spaced on all sides.
+
+        The final version of this project can be found in LessonTwoFinal.html
+
+        I added some extra little things inside.  Go ahead and see if you can understand them.  We will be going over them next week if not.
+
+       -->
+
+</body>
+</html>
