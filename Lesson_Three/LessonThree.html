@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lesson Three</title>
+</head>
+<body>
+    
+    <!-- 
+        This lesson will be pretty simple: 
+            - More es6 javascript additions
+                = Fetch
+                = Array functions
+            - More Vue
+                = v-model
+                = Computed values
+                = Sorting ( Great for portfolios )
+            - The basics of MaterializeCSS.
+            - Setting up a developer environment for javascript.
+    -->
+
+    <!-- 
+
+        Some more javascript:
+            The Fetch call.
+            Part of being a web developer is working constantly with APIs.  Apis are basically http url's that we as developers can call and use.
+            ALmost any major company has an api and the easiest way to see if a company has one is by adding developer.(comanyurl).
+
+            e.g.: developer.walmart.com
+
+            Below is a basic fetch call to get an API then convert it into JSON then do something with it!
+
+     -->
+
+     <script>
+    //  Makes the API call to the api url.
+     fetch('http://pokeapi.co/api/v2/pokemon/1/') 
+    //  Converts the call into .json Javascript Object Notation
+        .then(function(response) {
+            return response.json();
+        })
+    // Where you actually use the information, here we're just console.logging the myJson response.  This is also usually called data instead of myJson
+        .then(function(myJson) {
+            console.log(myJson);
+        });
+
+     
+     </script>
+
+     <!-- 
+
+        This fetches the first pokemon from the pokeapi website https://pokeapi.co/ and returns Bulbasaur's information.
+
+      -->
+
+      <!-- ES6 Array Functions -->
+      <!-- 
+
+        with the introduction of es6 we see many new functions added to javascript.  I'm going to go over two of them that are very important.
+
+        .map
+        .filter
+
+            Let's create a test array to use throughout this little lecture.
+
+            const demo = [1, 2, 3, 4].
+
+        .map allows you to iterate over every object in an array and then apply something to it.
+
+            Lets take our demo array and apply .map to it and have everything multiply by 2 and be displayed inside a div.
+            
+       -->
+
+       <div class="testDiv"></div>
+       <div class="testDiv2"></div>
+
+       <script>
+        //    Grab out Div Elements
+           const testDiv = document.querySelector('.testDiv');
+           const testDiv2 = document.querySelector('.testDiv2');
+        //    Declare Array
+           let demo = [1,2,3,4];
+
+        // Use the .map function.  Item stands for each item in the array, this can be named whatever.  Then an arrow function and returning item * 2.
+            testDiv.innerHTML = demo.map((item) => { 
+                return item * 2; 
+            });
+
+            // What's really amazing is thanks to es6 arrow functions we can make this even shorter.  by putting it on one line we can remove some things.
+
+            testDiv2.innerHTML = demo.map(item => item * 5);
+       
+       </script>
+
+       <!-- Now Let's look at .filter -->
+
+       <!-- 
+
+        Let's say we only want items larger than 2 from our array.  We can use filter for this. I'm only going to do the long version in these demos
+        for the sake of the screen.
+
+        -->
+        <br><hr>
+        <div class="filterTest"></div>
+
+        <script>
+        
+        const filter = document.querySelector('.filterTest');
+
+        let filterDemo = [1,2,3,4];
+
+        filter.innerHTML = demo.filter((item) => {
+            return item > 2;
+        });
+        
+        </script>
+
+        <!-- Now let's work on some Vue.js stuff.  Let's set up our instance. -->
+        <br><br><hr>
+        <div id="app">
+            <!-- Where the v-model is set with the input. -->
+            <input type="text" v-model="message">
+            <!-- The message pulled from data -->
+            <p>{{ message }}</p>
+        </div>
+
+        <!-- Vue cdn -->
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js'></script>
+        <script>
+
+            const app = new Vue({
+                el: '#app',
+                data: {
+                    // Don't forget to declare the message.
+                    message: ''
+                }
+            });
+
+        </script>
+
+        <!-- 
+            
+            If you run this code and type something into the input you'll notice the message shows up then within the p-tag.
+            This is thanks to the v-model tag on the input.  Basically what this does is when you type something into the input
+            it changes the string within the data section.  This can be used with radio buttons, or text-areas or anything.
+
+            Now let's make a filtered list from an array
+        -->
+
+        <br><br><hr>
+        <div id="filter">
+            <!-- Where the v-model is set with the input. -->
+            <input type="text" v-model="filter">
+            <!-- Here we use v-for to show all of the names in our names array -->
+            <ul>
+                <!-- We use searchList here since it's the name of our computed function below -->
+                <li v-for="name in searchList">{{name}}</li>
+            </ul>
+        </div>
+
+        <!-- Vue cdn -->
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js'></script>
+        <script>
+
+            const filterApp = new Vue({
+                el: '#filter',
+                data: {
+                    // The word we're filtering by.
+                    filter: '',
+                    // Our names array.
+                    names: [
+                        'Braxton',
+                        'Ben',
+                        'Kyle',
+                        'Kate',
+                        'Kristen',
+                        'Alex'
+                    ]
+                },
+                // The computer method.  This is built into Vue and allows us to use computed values within our application.
+                computed: {
+                    // Our searchList function that returns the sorted values from above and is sorted through in the li above.
+                    searchList: function() {
+                        // we want to return a list of names so we return names that we've filtered using an arrow function and the .filter() array method.
+                        return this.names.filter((name) => {
+                            // we return a name with all letters lowercased that includes our filter message above the user types again to lower case.
+                            // We use .toLowerCase to avoid bugs.
+                            return name.toLowerCase().includes(this.filter.toLowerCase());
+                        });
+                    }
+                }
+            });
+
+        </script>
+
+        <!-- Now let's work on some css frameworks. -->
+        <!-- 
+
+            CSS frameworks are very important in modern day Web Development in fact most jobs requrie you know at least one of them.
+
+            Luckily I created a website for Materialize CSS a framework based on Google's material design
+            The Materialize Specific website is found here: https://lvc-bootstrap.firebaseapp.com/materialize.html
+            https://lvc-bootstrap.firebaseapp.com/ is the full tutorial site if you want to look at it.
+
+         -->
+
+         <!-- 
+
+            Lastly let's setup a Developer environment now that we're starting to use some more complicated Javascript.
+
+            I recommend using MS Visual Studio Code: https://code.visualstudio.com/
+            It has become the defacto best IDE/Text Editor out there for program that won't break your bank.
+
+            I suggest watching https://www.youtube.com/watch?v=fnPhJHN0jTE&t=689s from Traversy Media on the basics of VSCode.
+
+            I would then install these essential extensions for the lessons we've been doing:
+
+                Beautify
+                Bracket Pair Colorizer
+                Cdnjs
+                ESLint
+                Live Server
+                Material Theme
+                Vetur
+                Vue 2 Snippets
+                vue-color
+
+                The most useful one of those that you'll use a ton is Cdnjs.  
+
+                    If you hit F1 -> cdnjs: search for libraries -> Vue -> current version -> vue.min.js -> paste
+                    this will automatically paste the vue cdn for you.
+          -->
+
+          <!-- This week's project -->
+
+
+          <!-- 
+
+            Create a small web app kind of like a portfolio.
+
+                Use a text box to sort through ten projects by their title.
+                These projects Must have a title, text, and a link button.
+                Only 3 projects can be on a row at a time on desktop, and must stack on mobile.
+                
+                This project has some things we haven't covered so here's some hints.
+
+                This will require you to use an array of objects.
+                Use MaterializeCSS for the card and the row limits. https://materializecss.com/
+                This will require v-bind for the anchor tag.
+
+           -->
+
+</body>
+</html>
