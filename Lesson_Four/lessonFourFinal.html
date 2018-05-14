@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/css/bootstrap.min.css'/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.1/lux/bootstrap.min.css">
+    <title>PokeDex</title>
+    <style>
+        .loading {
+            position: fixed;
+            top: 45%;
+            left: 45%;
+            font-size: 5rem;
+        }
+        .pokemon {
+            -moz-box-shadow:    inset 0 0 10px #000000;
+            -webkit-box-shadow: inset 0 0 10px #000000;
+            box-shadow:         inset 0 0 10px #000000;
+            padding: 15px !important;
+            margin: 15px !important;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body class="bg-dark">
+    
+    <!-- Declaring the app section for Vue -->
+    <main id="app">
+        <!-- A loading button using v-if while the api is called -->
+        <div class="loading" v-if="loading">Loading</div>
+
+        <!-- Bootstrap Container -->
+        <section class="container">
+            <div class="row mt-4 mb-4">
+                <h1 class="col-sm-12 col-md-6 text-light">PokeDex</h1>
+                <!-- The v-model input to sort through the pokemon. -->
+                <input class="col-sm-12 col-md-6" type="text" v-model="pokeSearch" placeholder="Search a pokemon">
+            </div>
+            <div class="row" style="background-color: grey;">
+                <!-- Each pokemon div -->
+                <div class="pokemon col-sm-4 col-md-2 mt-2 mb-2 bg-dark" v-for="pokemon in pokeSort">
+                    <!-- the Pokemon name -->
+                    <h5 class="text-light">{{ pokemon.pokemonName }}</h5>
+                    <!-- The images done through v-bind:src and v-bind:alt and shorthanded as :src and :alt -->
+                    <img :src="'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + pokemon.pokemonEntry + '.png'" :alt="pokemon.pokemonName">
+                </div>
+            </div>
+        </section>
+        <!-- Credit -->
+        <span>API from pokeapi.co</span>
+    </main>
+
+    <!-- Vue CDN -->
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.min.js'></script>
+    <script>
+        // Enables Vue developer tools when using the CDN
+        Vue.config.devtools = true
+
+        // Start the Vue Instance
+        const pokeDex = new Vue({
+            // Link to the app div
+            el: '#app',
+            // Data storage
+            data: {
+                // Checks on loading
+                loading: true,
+                // Search Parameter
+                pokeSearch: '',
+                // The API Call storage
+                pokeApiCall: 'pokemon.json',
+                // List of pokemon post api call
+                pokeList: []
+            },
+            // Mounted call for when the application loads execute this.
+            mounted() {
+                // Checks to see if its filled
+                this.checkIfDisplayed();
+                // Fetches the api
+                fetch(this.pokeApiCall)
+                    // Convert it to json
+                    .then(response => {
+                        return response.json();
+                    })
+                    // Then for each pokemon response push it to the array of objects in data
+                    .then(responseJson => {
+                        responseJson.pokemon_entries.forEach(pokemon => {
+                            let newPokemon = {
+                                pokemonName: pokemon.pokemon_species.name,
+                                pokemonEntry: pokemon.entry_number
+                            }
+                            // push to array
+                            this.pokeList.push(newPokemon);
+                        });      
+                        // Checks the display ( removes loading )
+                        this.checkIfDisplayed();
+                    })
+            },
+            methods: {
+                // Display check
+                checkIfDisplayed: function(){
+                    this.pokeList.length == 0 ? this.loading = true : this.loading = false
+                }
+            },
+            computed: {
+                // Sort function
+                pokeSort: function() {
+                    return this.pokeList.filter(pokemon => {
+                        return pokemon.pokemonName.toLowerCase().includes(this.pokeSearch.toLowerCase());
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html>
