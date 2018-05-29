@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lesson Five Final</title>
+</head>
+<body>
+
+    <style>
+    
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    body {
+          width: 100vw;
+          height: 100vh;
+          background-color: grey;
+          display: grid;
+          grid-template-columns: repeat(6, 1fr);
+          grid-template-rows: repeat(6, 15%);
+          grid-template-areas: 
+            "nav header header header header header"
+            "nav aside main main main main"
+            "nav aside main main main main"
+            "nav aside main main main main"
+            "nav aside main main main main"
+            "nav aside main main main main"
+            "nav footer footer footer footer footer";
+      }
+      header {
+          grid-area: header;
+          color: white;
+          text-shadow: 3px 3px 3px black;
+          background-color: green;
+      }
+      nav {
+          grid-area: nav;
+          color: white;
+          text-shadow: 3px 3px 3px black;
+          background-color: blue;
+      }
+      main {
+          grid-area: main;
+          color: white;
+          text-shadow: 3px 3px 3px black;
+          background-color: orange;
+      }
+      footer {
+          grid-area: footer;
+          color: white;
+          text-shadow: 3px 3px 3px black;
+          background-color: yellow;
+      }
+      aside {
+          grid-area: aside;
+          color: white;
+          text-shadow: 3px 3px 3px black;
+          background-color: red;
+      }
+      @media screen and (max-width: 720px) {
+          body {
+              grid-template-areas: 
+            "nav header header header header header"
+            "nav aside main main main main"
+            "nav aside main main main main"
+            "nav aside main main main main"
+            "nav aside main main main main"
+            "nav aside main main main main"
+            "nav footer footer footer footer footer";
+          }
+      }
+    
+    </style>
+
+    <header>header</header>
+    <nav>nav</nav>
+    <aside>aside</aside>
+    <main>main</main>
+    <footer>footer</footer>
+    
+</body>
+</html>

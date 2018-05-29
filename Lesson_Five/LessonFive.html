@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lesson Five</title>
+</head>
+<body>
+
+    <!-- 
+        
+        This lesson will mostly cover CSS Grid, the most modern display type for websites.
+        although not 100% supported by all browsers ( looking at you IE 11 ) it is supported in the major players, including edge.
+        CSS Grid is by far the most powerful and complex of the CSS display types and takes practice to use.
+
+        Let's get started.
+    
+    -->
+
+    <!-- 
+
+        First let's create a grid item.
+
+        we create a div with an id of grid
+
+        Next let's add display: grid; to it using css
+
+        Next let's add 6 divs inside of the grid and call them gridItems, and give them each a number.
+
+        Next we have to specify the amount of columns we want so let's introduce a new css value the fr.
+
+        Fr stands for fraction so in the grid you'll see I used grid-template-columns to say I want the standard template to be 3 divs of equal length.
+
+        This gives us 2 rows of 3 columns each.  Let me add some color to the div's to show you the difference.
+
+        You can use set values in here (px, %, etc) or the new repeat() function, so the 1fr 1fr 1fr could also be repeat(3, 1fr).
+
+     -->
+
+     <style>
+     
+        *{
+            padding: 0;
+            margin: 0;
+        }
+
+        #grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .grey {
+            background-color: grey;
+        }
+
+        .black {
+            background-color: black;
+        }
+     
+     </style>
+
+     <div id="grid" style="margin-bottom: 250px;">
+        <div class="gridItems grey">1</div>
+        <div class="gridItems black">2</div>
+        <div class="gridItems grey">3</div>
+        <div class="gridItems black">4</div>
+        <div class="gridItems grey">5</div>
+        <div class="gridItems black">6</div>
+     </div>
+
+     <!-- 
+
+        Now let's show how this can really be useful wtih repositioning.  Let's make a standard website layout.
+        I'll be making this with a wrapping container to make it smaller so keep that in mind.
+
+        Now let's say we want a layout like what I have drawn below.
+
+            ------------Header--------------
+            nav ------------main------------
+            nav ------------main-------aside
+            nav ------------main-------aside
+            nav ------------main------------
+            nav ------------main------------
+            -------------Footer-------------
+
+        Outside of grid this would be really complicated, but with grid it's pretty easy.
+
+        we can use what's called a grid-template.
+
+        First let's give each of our elements a grid-area.  this is basically like giving it a name.
+
+        let's also give them each a color and some text shadow so it's easy to see, don't worry it's going to look ugly.
+
+        Now we've assigned them all names we can write our template.
+
+        First add display: grid;
+
+        THen add grid-template-areas: '';
+
+        Then fill in where you want each piece of the puzzle, i'm going with a 6 column grid just for consistency.
+
+        Lastly our add grid-template-columns and grid-template-rows to specify the widths and the heights.
+
+        Now let's say we want the nav under the header for mobile.  I'll add a media query and show you how simple it is to create responsive design.
+
+        There are many other uses for grid we will cover slowly, but for now this is a good start.  Here's your project.
+
+        Create a website with the following specifications.
+
+            - 100vw and 100vh
+            - A side Nav from top to bottom
+            - A header and a footer
+            - A left Aside between the header and footer
+            - A main right of the Aside and between the header and the footer
+            - then on mobile (720px) the footer and header switch and so does the aside and nav.
+      -->
+
+      <style>
+      
+      .container {
+          width: 80vw;
+          height: 100vh;
+          margin: 0 auto;
+          background-color: grey;
+          display: grid;
+          grid-template-columns: repeat(6, 1fr);
+          grid-template-rows: repeat(6, 15%);
+          grid-template-areas: 
+            "header header header header header header"
+            "nav main main main main aside"
+            "nav main main main main aside"
+            "nav main main main main aside"
+            "nav main main main main aside"
+            "nav main main main main aside"
+            "footer footer footer footer footer footer";
+      }
+      header {
+          grid-area: header;
+          color: white;
+          text-shadow: 3px 3px 3px black;
+          background-color: green;
+      }
+      nav {
+          grid-area: nav;
+          color: white;
+          text-shadow: 3px 3px 3px black;
+          background-color: blue;
+      }
+      main {
+          grid-area: main;
+          color: white;
+          text-shadow: 3px 3px 3px black;
+          background-color: orange;
+      }
+      footer {
+          grid-area: footer;
+          color: white;
+          text-shadow: 3px 3px 3px black;
+          background-color: yellow;
+      }
+      aside {
+          grid-area: aside;
+          color: white;
+          text-shadow: 3px 3px 3px black;
+          background-color: red;
+      }
+
+      @media screen and (max-width: 720px) {
+          .container {
+              grid-template-areas:
+                "header header header header header header"
+                "nav nav nav nav nav nav"
+                "main main main main aside aside"
+                "main main main main aside aside"
+                "main main main main aside aside"
+                "footer footer footer footer footer footer";
+
+          }
+      }
+      
+      </style>
+
+      <div class="container">
+
+        <header>Header</header>
+        <nav>Nav</nav>
+        <main>Main</main>
+        <footer>Footer</footer>
+        <aside>Aside</aside>
+
+      </div>
+    
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lesson Six Final</title>
+    <style>
+    
+    * { 
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        width: 100vw;
+        height: 100vh;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(5, 20%);
+        grid-template-areas: 
+        'header header header header header header'
+        'nav nav nav nav nav nav'
+        'aside aside main main main main'
+        'aside aside main main main main'
+        'footer footer footer footer footer footer'
+        ;
+    }
+    header {
+        grid-area: header;
+        background-color: grey;
+        border: 1px solid white;
+    }
+    nav {
+        grid-area: nav;
+        background-color: #eee;
+        border: 1px solid white;
+    }
+    main {
+        grid-area: main;
+        background-color: #868686;
+        border: 1px solid white;
+    }
+    aside {
+        grid-area: aside;
+        background-color: #747474;
+        border: 1px solid white;
+    }
+    footer {
+        grid-area: footer;
+        background-color: #bbbbbb;
+        border: 1px solid white;
+    }
+    .floatingButton {
+        position: fixed;
+        bottom: 5%;
+        right: 5%;
+        background-color: red;
+        width: 50px;
+        height: 50px;
+        border-radius: 15px;
+    }
+    .flexCenterCenter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    </style>
+</head>
+<body>
+
+    <!-- 
+        
+        Project: 
+
+            Create a website with the following requirements.
+
+                1. A width of 100vw and a Height of 100vh, It does not have to be responsive.
+                2. Include a header, nav, main, aside, and footer.
+                3. Create a button in the bottom right corner that is fixed.
+                4. When the button is pressed the grid reshapes itself ( footer where the header was, aside switches, etc.  Whatever you want.)
+                5. Once clicked the grid changes from light colors to dark colors, a night mode.
+     
+    -->
+
+    <header class="flexCenterCenter">
+        <h3>Header</h3>
+    </header>
+    <nav class="flexCenterCenter">
+        <h3>Nav</h3>
+    </nav>
+    <main class="flexCenterCenter">
+        <h3>Main</h3>
+    </main>
+    <aside class="flexCenterCenter">
+        <h3>Aside</h3>
+    </aside>
+    <footer class="flexCenterCenter">
+        <h3>Footer</h3>
+    </footer>
+
+    <div class="floatingButton flexCenterCenter">Click</div>
+
+    <script>
+
+        const text = document.querySelectorAll('h3');
+        const bodyEle = document.querySelector('body');
+        const header = document.querySelector('header');
+        const nav = document.querySelector('nav');
+        const main = document.querySelector('main');
+        const aside = document.querySelector('aside');
+        const footer = document.querySelector('footer');
+        const button = document.querySelector('.floatingButton');
+        var darkMode = false;
+
+        button.addEventListener('click', () => {
+            if(darkMode == false) {
+                bodyEle.style.gridTemplateAreas = '"footer footer footer footer footer footer" "main main main main aside aside" "main main main main aside aside" "nav nav nav nav nav nav" "header header header header header header"';
+                header.style.backgroundColor = '#000';
+                nav.style.backgroundColor = '#000';
+                main.style.backgroundColor = '#000';
+                aside.style.backgroundColor = '#000';
+                footer.style.backgroundColor = '#000';
+                text.forEach(element => {
+                    element.style.color = 'white';
+                });            
+                darkMode = true;
+            } else {
+                bodyEle.style.gridTemplateAreas = '"header header header header header header" "nav nav nav nav nav nav" "aside aside main main main main" "aside aside main main main main" "footer footer footer footer footer footer"';
+                header.style.backgroundColor = 'grey';
+                nav.style.backgroundColor = '#eee';
+                main.style.backgroundColor = '#868686';
+                aside.style.backgroundColor = '#747474';
+                footer.style.backgroundColor = '#bbbbbb';
+                text.forEach(element => {
+                    element.style.color = 'black';
+                });
+                darkMode = false;
+            }
+        });
+
+        
+    
+    </script>
+
+</body>
+</html>
