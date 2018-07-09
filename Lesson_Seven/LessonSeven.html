@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lesson Seven</title>
+</head>
+<body>
+    
+    <!-- 
+        
+    This Week's Lesson will focus on LoDash.  A Javascript Function Library that makes things 100% easier for developers by taking some of the most common functions
+    and creating an easy library of functions to be called.
+
+    To start we need to install Lodash using npm.
+
+    (Following steps are if you're installing it yourself)
+
+    *Note if on macOS add sudo before each command so sudo npm install instead of npm install
+
+    Start with npm init and fill out the form
+
+        npm init
+
+    Open your terminal in the folder you want to install lodash and type: 
+    
+        npm i -g npm
+
+    Next type
+
+        npm i --save lodash
+
+    Now you have lodash installed and we can call it just like a regular js file.  I have installed it in the large file in the web dev lessons so you only have to type
+    npm install in the Lessons file.
+
+    For a tutorial watch: https://www.youtube.com/watch?v=jHDhaSSKmB0
+
+    ( If you run into an issue try adding a node_modules folder to the main folder )
+
+    Next let's add Lodash to our document.
+
+    -->
+
+    <script src="../node_modules/lodash/lodash.js"></script>
+
+    <!-- We now have lodash installed.  Lets take a look at just a few of it's functions. -->
+
+    <!-- Let's say you want to filter an array to be only of unique items. Let's say you and your significant other both are adding items to a shopping list. -->
+
+    <script>
+    // Shopping List
+    const shoppingList = ['Bread', 'Apples', 'Bananas', 'Soda', 'Grapes', 'Bread'];
+
+    // But by accident your significant other added Bread when you already added it.  To fix this in regular javascript would be a real pain but thanks to lodash it looks like this.
+    const newShoppingList = _.uniq(shoppingList);
+
+    // Let's console.log it
+    console.log(newShoppingList);
+
+    // Let's look at a few more.  Lets say we want to make sure something is not a number.  
+
+    // All we have to do is
+
+    var number = 5;
+
+    var isItANumber = _.isNaN(number) ? 'Not a number' : 'It\'s a number';
+
+    console.log(isItANumber);
+
+    // Check it out in the console.
+    </script>
+
+    <!-- If you want to read more about lodash check out the docs here: https://lodash.com/docs/4.17.10#isNaN -->
+
+    <!-- For this weeks project I want you to get two random numbers between 0 and 5000 and multiple them together using only lodash. -->
+
+</body>
+</html>

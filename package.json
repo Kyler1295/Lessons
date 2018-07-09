@@ -1,0 +1,23 @@
+{
+  "name": "webdevlessons",
+  "version": "1.0.0",
+  "description": "Lessons for Basic Web Development",
+  "main": "index.js",
+  "dependencies": {
+    "lodash": "^4.17.10"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kyler1295/Lessons.git"
+  },
+  "author": "Kyle Rosen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kyler1295/Lessons/issues"
+  },
+  "homepage": "https://github.com/Kyler1295/Lessons#readme"
+}
